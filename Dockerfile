@@ -1,5 +1,5 @@
 # Use Node.js LTS Alpine as base image
-FROM node:lts-alpine 
+FROM node:18.12.1-alpine
 
 # Set working directory
 WORKDIR /app
@@ -9,20 +9,22 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Install dependencies
-RUN npm install -g @nrwl/cli
 RUN npm install
 
 # Copy application code
 COPY . .
 
 # Build application
-RUN nx run angular-ar:build:production
+RUN npx nx run angular-ar:build:production
 
 # Move to dist folder containing build output
-WORKDIR /app/dist/angular-ar
+WORKDIR /dist/apps/angular-ar
 
 # Expose port 4200 for Angular
 EXPOSE 4200 
 
+# Copy nginx config 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Serve app using nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
