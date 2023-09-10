@@ -27,11 +27,20 @@ export class ArViewComponent implements AfterViewInit {
 	@Output() closeExperience = new EventEmitter();
 	
 	private scriptService = inject(ScriptLoaderService);
-	private locationService = inject(LocationService);
+	protected locationService = inject(LocationService);
+	points: any[] = [
+		{ lat: 26.316801859922766, lng: -80.18117468641245 },
+		{ lat: 26.31668267289344, lng: -80.18114677949247 },
+		{ lat: 26.316614986377754, lng: -80.1807708568645 },
+		{ lat: 26.31715131303795, lng: -80.18038348107314 }
+	]
 
 	constructor() {
 		this.locationService.trackUserLocation();
+		this.locationService.userGeolocation()
 	}
+
+
 	ngAfterViewInit() {
 
 		this.scriptService.load([
@@ -40,8 +49,23 @@ export class ArViewComponent implements AfterViewInit {
 
 	}
 
+	loaded(scene: any) {
+
+		// const loc = this.locationService.userGeolocation();
+		// if (loc) {
+
+		// 	const { lat, lng } = loc;
+		// 	for (let index = 0; index < 10; index++) {
+		// 		this.points.push({ lat: lat, lng: lng + Number(`0.0${index}`) });
+				
+		// 	}
+
+		// }
+		console.log(scene)
+	}
+
 	ngOnDestroy() {
-		let video = document.getElementsByTagName('video').item(0);
+		const video = document.getElementsByTagName('video').item(0);
 		video?.remove();
 	}
 }
