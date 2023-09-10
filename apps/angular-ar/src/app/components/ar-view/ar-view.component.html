@@ -1,2 +1,9 @@
 
-<div #arView></div>
+<a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+	<a-text value="Hello World." look-at="[gps-camera]" scale="120 120 120"
+		gps-entity-place="latitude: 26.317084; longitude: -80.180843;"></a-text>
+	<a-camera gps-camera rotation-reader> </a-camera>
+</a-scene>
+<div class="button-container">
+	<button hlmBtn (click)="closeExperience.emit()" class="close-button">Exit Experience</button>
+</div>

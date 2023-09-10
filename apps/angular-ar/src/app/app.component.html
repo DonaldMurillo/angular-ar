@@ -1,4 +1,8 @@
 <!-- <angular-ar-nx-welcome></angular-ar-nx-welcome>  -->
 <pre>{{ locationService.userGeolocation() | json }}</pre>
-<ar-view></ar-view>
+
+<button hlmBtn (click)="start = !start" >Start AR Experience</button>
+
+<ar-view *ngIf="start" (closeExperience)="start = !start"></ar-view>
+
 <router-outlet></router-outlet>

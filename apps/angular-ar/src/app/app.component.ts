@@ -5,10 +5,11 @@ import { Client, Account, ID, Databases,  } from "appwrite";
 import { LocationService } from './services/location.service';
 import { CommonModule } from '@angular/common';
 import { ArViewComponent } from './components/ar-view/ar-view.component';
+import { HlmButtonDirective } from '@spartan-ng/button-helm';
 
 @Component({
 	standalone: true,
-	imports: [NxWelcomeComponent, RouterModule, CommonModule, ArViewComponent],
+	imports: [NxWelcomeComponent, RouterModule, CommonModule, ArViewComponent, HlmButtonDirective],
 	selector: 'angular-ar-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
@@ -18,6 +19,7 @@ export class AppComponent {
 	title = 'angular-ar';
 	client = new Client();
 	locationService = inject(LocationService);
+	start = false;
 
 	constructor() {
 		// this.client.setEndpoint('https://appwrite.donaldmurillo.com/v1')
