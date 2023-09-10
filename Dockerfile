@@ -54,27 +54,27 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 
-# # build environment
-# FROM node:18.12.1-alpine as builder
-# # Clone your GitHub repository into the Docker image
-# RUN apk update && apk add git  # Install git
-# RUN git clone https://github.com/DonaldMurillo/angular-ar  # Replace with your GitHub repository URL
+# build environment
+FROM node:18.12.1-alpine as builder
+# Clone your GitHub repository into the Docker image
+RUN apk update && apk add git  # Install git
+RUN git clone https://github.com/DonaldMurillo/angular-ar  # Replace with your GitHub repository URL
 
-# RUN mkdir -p /usr/repo 
-# RUN cp -r /angular-ar/* /usr/repo
-# WORKDIR /usr/repo
-# ENV PATH /usr/repo/node_modules/.bin:$PATH
-# # from where the code initially lives to the folder we want to work on
+RUN mkdir -p /usr/repo 
+RUN cp -r /angular-ar/* /usr/repo
+WORKDIR /usr/repo
+ENV PATH /usr/repo/node_modules/.bin:$PATH
+# from where the code initially lives to the folder we want to work on
 
 
-# RUN npm install
-# RUN npx nx run angular-ar:build:production
+RUN npm install
+RUN npx nx run angular-ar:build:production
 
-# # production environment
-# FROM nginx:1.24.0-alpine
-# RUN rm -rf /etc/nginx/conf.d
-# RUN mkdir -p /etc/nginx/conf.d
-# COPY ./nginx.conf /etc/nginx/conf.d/
-# COPY --from=builder /usr/repo/dist/apps/angular-ar /usr/share/nginx/html
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+# production environment
+FROM nginx:1.24.0-alpine
+RUN rm -rf /etc/nginx/conf.d
+RUN mkdir -p /etc/nginx/conf.d
+COPY --from=builder /usr/repo/nginx.conf /etc/nginx/conf.d/
+COPY --from=builder /usr/repo/dist/apps/angular-ar /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
