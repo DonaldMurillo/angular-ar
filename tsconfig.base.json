@@ -20,6 +20,9 @@
     "paths": {
       "@spartan-ng/button-helm": [
         "button-helm/src/index.ts"
+      ],
+      "@spartan-ng/typography-helm": [
+        "typography-helm/src/index.ts"
       ]
     }
   },

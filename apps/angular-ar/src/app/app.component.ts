@@ -1,15 +1,26 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { Client, Account, ID, Databases,  } from "appwrite";
+import { Client,  } from "appwrite";
 import { LocationService } from './services/location.service';
 import { CommonModule } from '@angular/common';
 import { ArViewComponent } from './components/ar-view/ar-view.component';
 import { HlmButtonDirective } from '@spartan-ng/button-helm';
+import { HlmH1Directive, HlmH2Directive, HlmUlDirective } from '@spartan-ng/typography-helm';
+
 
 @Component({
 	standalone: true,
-	imports: [NxWelcomeComponent, RouterModule, CommonModule, ArViewComponent, HlmButtonDirective],
+	imports: [
+		NxWelcomeComponent,
+		RouterModule,
+		CommonModule,
+		ArViewComponent,
+		HlmButtonDirective,
+		HlmH1Directive,
+		HlmUlDirective,
+		HlmH2Directive
+	],
 	selector: 'angular-ar-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],

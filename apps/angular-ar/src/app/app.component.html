@@ -1,7 +1,17 @@
 <!-- <angular-ar-nx-welcome></angular-ar-nx-welcome>  -->
+<h1 hlmH1 class="lg:text-5xl text-center">Simple Angular AR Experience</h1>
+<br>
+<br>
 <pre>{{ locationService.userGeolocation() | json }}</pre>
-
-<button hlmBtn (click)="start = !start" >Start AR Experience</button>
+<h2 hlmH2> For this experience you will need to allow 3 permission: </h2>
+<ul hlmUl>
+	<li>- Geolocation: needed to place the elements</li>
+	<li>- Camera: needed to create the AR experience</li>
+	<li>- Camera direction: needed to place the elements</li>
+</ul>
+<div class="flex justify-center">
+	<button hlmBtn (click)="start = !start" class="" >Start AR Experience</button>
+</div>
 
 <ar-view *ngIf="start" (closeExperience)="start = !start"></ar-view>
 

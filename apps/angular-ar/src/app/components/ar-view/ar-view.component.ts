@@ -14,7 +14,7 @@ require('aframe-look-at-component');
 	standalone: true,
 	imports: [
 		CommonModule,
-		HlmButtonDirective
+		HlmButtonDirective,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	templateUrl: './ar-view.component.html',
